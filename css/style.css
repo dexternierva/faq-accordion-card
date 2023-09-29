@@ -1,0 +1,235 @@
+:root {
+	--ff-primary: 'Kumbh Sans', sans-serif;
+
+	--clr-primary: 238, 29%, 16%;
+	--clr-accent: 14, 88%, 65%;
+	--clr-gradient-alpha: 273, 75%, 66%;
+	--clr-gradient-beta: 240, 73%, 65%;
+	--clr-neutral-alpha: 237, 12%, 33%;
+	--clr-neutral-beta: 240, 6%, 50%;
+	--clr-divider: 240, 5%, 91%;
+}
+
+/*** RESET
+============================================================== */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+/*** BASE
+============================================================== */
+html {
+	font-size: 100%;
+}
+
+body {
+	font-family: var(--ff-primary);
+	font-size: 0.75rem;
+	color: hsl(var(--clr-neutral-beta));
+	line-height: 1.5;
+}
+
+/*** BUILDING-BLOCKS
+============================================================== */
+.faq-list__title {
+	font-size: 2rem;
+	font-weight: bold;
+	text-align: center;
+	color: hsl(var(--clr-primary));
+}
+
+@media screen and (min-width: 1024px) {
+	.faq-list__title {
+		text-align: left;
+		margin: 0 0 1rem 0;
+	}
+}
+
+/*** MODULES
+============================================================== */
+
+/***PRIMARY VISUAL
+-------------------------------------------------------------- */
+.primary-visual {
+	position: absolute;
+	width: 100%;
+	max-width: 15rem;
+	height: auto;
+	margin: auto;
+	inset-inline: 0;
+	top: -6.75rem;
+	z-index: 2;
+}
+
+.primary-visual__sp {
+	display: block;
+}
+
+.primary-visual__pc {
+	display: none;
+}
+
+.primary-visual__box {
+	display: none;
+}
+
+.primary-visual::after {
+	content: "";
+	position: absolute;
+	top: 7rem;
+	width: 100%;
+	height: 100%;
+	background: url(../images/bg-pattern-mobile.svg) no-repeat;
+	background-size: contain;
+	z-index: 1;
+}
+
+@media screen and (min-width: 1024px) {
+	.primary-visual {
+		flex-grow: 1;
+		flex-shrink: 1;
+		flex-basis: 50%;
+		padding: 0;
+		top: 50%;
+		position: relative;
+		max-width: 472px;
+		margin: 0;
+		overflow: hidden;
+	}
+
+	.primary-visual::after {
+		top: 0;
+		left: -5rem;
+		background: url(../images/bg-pattern-desktop.svg) no-repeat 100% 68%;
+		background-size: 860px;
+		z-index: -1;
+	}
+
+	.primary-visual__box {
+		position: absolute;
+		top: 38%;
+		left: -5.5rem;
+		display: block;
+		z-index: 3;
+	}
+
+	.primary-visual__sp {
+		display: none;
+	}
+
+	.primary-visual__pc {
+		display: block;
+		position: relative;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		left: -5rem;
+	}
+}
+
+/*** FAQ LIST
+-------------------------------------------------------------- */
+.faq-list {
+	margin: 1rem 0 0 0;
+	list-style: none;
+}
+
+.faq-list__item {
+	position: relative;
+	/* padding: 1rem 1.5rem 1rem 0; */
+	border-bottom: 1px solid hsl(var(--clr-divider));
+	cursor: pointer;
+}
+
+.faq-list__item::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+	width: 10px;
+	height: 7px;
+	background: url(../images/icon-arrow-down.svg) no-repeat center right;
+	transition: all 100ms ease-in;
+	transition-delay: 200ms;
+}
+
+.faq-list__term {
+	padding: 1rem 1.5rem 1rem 0;
+}
+
+.faq-list__item--active .faq-list__term {
+	padding-bottom: 0;
+	font-weight: bold;
+}
+
+.faq-list__item--active::after {
+	transform: rotate(180deg);
+}
+
+.faq-list__desc {
+	height: 0;
+	padding: 0 1.5rem 0 0;
+	transform: scaleY(0);
+	margin: 0;
+	transition: all 200ms ease-in-out;
+	transition-delay: 200ms;
+}
+
+.faq-list__item--active .faq-list__desc {
+	height: auto;
+	transform: scaleY(1);
+	margin: 0.5rem 0 0 0;
+	padding: 0 1.5rem 1rem 0;
+}
+
+@media screen and (min-width: 1024px) {
+	.faq-list {
+		padding-right: 6rem;
+		flex-grow: 1;
+		flex-shrink: 1;
+		flex-basis: 50%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin: 0;
+	}
+}
+
+/*** BLOCKS
+============================================================== */
+.container {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 8rem 1.5rem;
+	background-image: linear-gradient(to bottom, hsl(var(--clr-gradient-alpha)), hsl(var(--clr-gradient-beta)));
+}
+
+.container__inner {
+	flex-basis: 375px;
+	flex-grow: 0;
+	flex-shrink: 1;
+	position: relative;
+	padding: 8.5rem 1.5rem 3rem 1.5rem;
+	background: #fff;
+	border-radius: 1.5rem;
+}
+
+@media screen and (min-width: 1024px) {
+	.container__inner {
+		flex-basis: 960px;
+		display: flex;
+		align-items:stretch;
+		min-height: 525px;
+		padding: 0;
+	}
+}
